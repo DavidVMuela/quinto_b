@@ -1,10 +1,10 @@
 name: CI/CD Pipeline
 
-on:
+oon:
   push:
-    branches:
-      - quinto_b
+    branches: [ "quinto_b" ]
   pull_request:
+    branches: [ "quinto_b" ]
 
 permissions:
   contents: read
