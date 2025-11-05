@@ -2,9 +2,9 @@ name: Python Docker Image Build
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "quinto_b" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "quinto_b" ]
 
 permissions:
   contents: read
