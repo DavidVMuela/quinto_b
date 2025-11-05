@@ -45,4 +45,3 @@ jobs:
         context: . # Usa el directorio actual como contexto de build
         push: true
         tags: ghcr.io/davidvmuela/quinto_b:latest
-        # Usa el nombre de tu repositorio para el tag.
