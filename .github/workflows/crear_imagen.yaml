@@ -1,21 +1,22 @@
-name: CI/CD Pipeline
+name: Python Docker Image Build
 
-oon:
+on:
   push:
-    branches: [ "quinto_b" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "quinto_b" ]
+    branches: [ "main" ]
 
 permissions:
   contents: read
-  package: write
+
+  packages: write 
 
 jobs:
   build:
-
+    
     runs-on: ubuntu-latest
-  
-  steps:
+
+    steps:
     - uses: actions/checkout@v4
     
     - name: Set up Python 3.10
@@ -29,6 +30,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt # Asegúrate que el archivo se llama 'requirements.txt'
 
+    # Se eliminan los pasos "Run tests" y "Run lint"
 
     - name: 🔐 Login to GitHub Container Registry
       uses: docker/login-action@v3
@@ -36,8 +38,11 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
+
     - name: 🏗️ Build and push Docker image
       uses: docker/build-push-action@v6
       with:
+        context: . # Usa el directorio actual como contexto de build
         push: true
-        tags: ghcr.io/DavidVMuela/quinto_b:latest
+        tags: ghcr.io/davidvmuela/quinto_b:latest
+        # Usa el nombre de tu repositorio para el tag.
